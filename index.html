@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trop Gentil pour Être Heureux | Le Guide Complet</title>
+    <meta name="description" content="Le guide complet pour reconnaître les personnalités toxiques, poser vos limites sans culpabiliser, et rompre les liens qui vous détruisent.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        'mauve-dark': '#1A1025',   
+                        'mauve-base': '#2D1B36',   
+                        'mauve-light': '#4A2C5A',  
+                        'pink-accent': '#E8A2C8',  
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Animations et effets */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Effet 3D pour la couverture en haut */
+        .book-container { perspective: 1000px; }
+        .book {
+            transform-style: preserve-3d;
+            transform: rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 15px 25px 40px rgba(0,0,0,0.6);
+        }
+        .book-container:hover .book {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+            box-shadow: 0px 35px 50px rgba(0,0,0,0.7);
+        }
+
+        body { background: radial-gradient(circle at top right, #3a2147 0%, #1A1025 70%); background-attachment: fixed; color: #F3F4F6; }
+        
+        /* Modale PDF */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(5px); z-index: 100; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden pb-24">
+
+    <!-- 1. BARRE D'ANNONCE -->
+    <div class="bg-gradient-to-r from-pink-600 to-red-500 text-white text-center py-2 px-3 shadow-lg sticky top-0 z-40">
+        <p class="text-[11px] md:text-sm font-semibold tracking-wide uppercase leading-tight">
+            ✨ Offre de lancement : Le guide complet à 3 500 FCFA (~5,50 €) au lieu de 10 000 FCFA (~15 €)
+        </p>
+        <div class="text-[10px] md:text-xs font-mono mt-1 bg-black/20 inline-block px-3 py-0.5 rounded-full">
+            Fin de l'offre dans : <span id="timer" class="font-bold text-white">24:00:00</span>
+        </div>
+    </div>
+
+    <!-- 2. SECTION HÉROS (IMAGE 1 : LA COUVERTURE) -->
+    <header class="relative max-w-6xl mx-auto px-4 py-12 md:py-24 flex flex-col-reverse md:flex-row items-center gap-10 md:gap-20">
+        <div class="md:w-1/2 text-center md:text-left flex flex-col gap-5 reveal w-full">
+            <span class="inline-block bg-pink-accent/10 border border-pink-accent/30 text-pink-accent px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest w-max mx-auto md:mx-0">
+                Relations & Développement Personnel
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-tight text-white">
+                Êtes-vous <span class="text-pink-accent italic">trop gentil</span> pour être heureux ?
+            </h1>
+            <p class="text-base md:text-lg text-gray-300 leading-relaxed font-light">
+                Le guide complet pour reconnaître les personnalités toxiques, poser vos limites sans culpabiliser, et rompre les liens qui vous détruisent.
+            </p>
+            
+            <div class="flex flex-col gap-3 mt-4 w-full sm:w-auto mx-auto md:mx-0">
+                <!-- Bouton Lire l'extrait (Gratuit) -->
+                <button onclick="openModal()" class="flex items-center justify-center gap-2 bg-transparent border border-pink-accent/50 text-pink-accent hover:bg-pink-accent/10 font-semibold py-3 px-4 rounded-lg transition-all duration-300 text-sm md:text-base w-full">
+                    📖 Lire l'extrait gratuit (10 pages)
+                </button>
+                <!-- Bouton Acheter (Lien Maketou) -->
+                <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener-center noreferrer" class="flex items-center justify-center gap-2 bg-pink-accent text-m bookauve-dark font-bold py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(232,162,200,-container0.3)] hover:shadow-[0_0_25px_rgba(232,162,200 reveal,0.6)] transition-all duration-300 text-sm md:text-base w-full">
+                    🛒 Acheter le guide complet (3 500 FCFA)
+                </a>
+            </div>
+            <p class="text-xs md:text-sm text-gray-400 flex items-center justify-center md:justify-start gap-2 mt-1">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Paiement sécurisé sur Maketou
+            </p>
+        </div>
+
+        <!-- L'IMAGE DE LA COUVERTURE -->
+        <div class="md:w-1/2 flex justify w-full px-6">
+            <div class="book relative w-56 sm:w-64 md:w-80 lg:w-96 rounded-xl overflow-hidden border border-white/10">
+                <img src="couverture.jpg" alt="Couverture du livre Trop Gentil pour Être Heureux" class="w-full h-auto block object-cover">
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. SECTION PROBLÈME -->
+    <section class="py-16 px-4 border-t border-white/5 bg-black/20">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="text-2xl md:text-4xl font-serif font-bold mb-6 text-white px-2">Vous sentez-vous épuisé après avoir parlé à certaines personnes ?</h2>
+            <p class="text-base md:text-lg text-gray-300 mb-10 leading-relaxed font-light max-w-3xl mx-auto">
+                Avez-vous l'impression de vous effacer pour éviter les conflits ? De dire "oui" alors que votre corps vous crie "non" ? Le problème n'est pas votre sensibilité. Le problème, c'est que cette gentillesse est devenue un piège.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-4 text-left">
+                <div class="bg-mauve-light/30 p-5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                    <div class="text-2xl mb-3">🔋</div>
+                    <h3 class="font-bold text-white mb-2 text-base">La fatigue chronique</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Une fatigue de plomb qui persiste même après une nuit de sommeil. Votre système nerveux est en hypervigilance permanente.</p>
+                </div>
+                <div class="bg-mauve-light/30 p-5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                    <div class="text-2xl mb-3">🫃</div>
+                    <h3 class="font-bold text-white mb-2 text-base">La boule au ventre</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Une anxiété qui se déclenche à l'idée de voir une personne. Votre intestin, votre "deuxième cerveau", tire la sonnette d'alarme.</p>
+                </div>
+                <div class="bg-mauve-light/30 p-5 rounded-2xl border border-white/5 backdrop-blur-sm">
+                    <div class="text-2xl mb-3">🫥</div>
+                    <h3 class="font-bold text-white mb-2 text-base">La perte de soi</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">L'impression de vous être éteint. À force de sur-adapter pour garder la paix, vous vous êtes perdu de vue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SECTION SOLUTION -->
+    <section class="py-16 px-4 max-w-6xl mx-auto reveal">
+        <div class="text-center mb-10">
+            <h2 class="text-2xl md:text-4xl font-serif font-bold mb-3 text-white">Le Chemin vers la Liberté en 3 Étapes</h2>
+            <p class="text-sm md:text-base text-gray-400 font-light px-4">Une méthode simple, mais pas simpliste, pour passer de la souffrance silencieuse à une liberté assumée.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-b from-mauve-light/40 to-mauve-base p-6 rounded-2xl border border-white/5 hover:border-pink-accent/50 transition-all duration-300">
+                <div class="bg-pink-accent text-mauve-dark w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-[0_0_15px_rgba(232,162,200,0.4)]">1</div>
+                <h3 class="text-lg font-serif font-bold mb-2 text-white">Diagnostic</h3>
+                <p class="text-gray-400 text-xs leading-relaxed font-light">Apprenez à écouter les signaux de votre corps, à nommer les comportements toxiques et à mesurer le degré d'emprise.</p>
+            </div>
+            <div class="bg-gradient-to-b from-mauve-light/40 to-mauve-base p-6 rounded-2xl border border-white/5 hover:border-pink-accent/50 transition-all duration-300">
+                <div class="bg-pink-accent text-mauve-dark w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-[0_0_15px_rgba(232,162,200,0.4)]">2</div>
+                <h3 class="text-lg font-serif font-bold mb-2 text-white">Action</h3>
+                <p class="text-gray-400 text-xs leading-relaxed font-light">Découvrez le "bouclier verbal" (10 phrases pour dire non), la technique du "disque rayé" et de la "fermeté douce".</p>
+            </div>
+            <div class="bg-gradient-to-b from-mauve-light/40 to-mauve-base p-6 rounded-2xl border border-white/5 hover:border-pink-accent/50 transition-all duration-300">
+                <div class="bg-pink-accent text-mauve-dark w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mb-4 shadow-[0_0_15px_rgba(232,162,200,0.4)]">3</div>
+                <h3 class="text-lg font-serif font-bold mb-2 text-white">Libération</h3>
+                <p class="text-gray-400 text-xs leading-relaxed font-light">Le protocole de rupture, la gestion de la culpabilité et les 7 règles d'or pour ne plus jamais retomber dans le piège.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SECTION APERÇU GRATUIT -->
+    <section id="apercu" class="bg-mauve-light/20 py-16 px-4 border-y border-white/5 reveal">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 bg-mauve-base/80 p-6 md:p-10 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-md">
+            <div class="md:w-1/2 space-y-3">
+                <span class="bg-pink-accent/20 text-pink-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Extrait 100% Gratuit</span>
+                <h2 class="text-xl md:text-3xl font-serif font-bold text-white leading-tight">Lisez les 10 premières pages avant d'acheter.</h2>
+                <p class="text-sm text-gray-300 leading-relaxed font-light">
+                    Cliquez pour lire immédiatement l'extrait de <strong>10 pages</strong> directement sur le site. (Le livre complet est disponible en cliquant sur les boutons d'achat).
+                </p>
+                <!-- Bouton secondaire pour lire l'extrait depuis cette section -->
+                <button onclick="openModal()" class="mt-4 flex items-center justify-center gap-2 bg-transparent border border-pink-accent/50 text-pink-accent hover:bg-pink-accent/10 font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm w-max">
+                    📖 Lire l'extrait maintenant
+                </button>
+            </div>
+            
+            <div class="md:w-1/2 w-full bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
+                <div class="text-4xl mb-4">📥</div>
+                <h3 class="font-bold text-base mb-2 text-white font-serif">Envie de le garder ?</h3>
+                <p class="text-xs text-gray-400 mb-4">Recevez l'extrait PDF par email pour le lire plus tard.</p>
+                <form class="space-y-3" onsubmit="event.preventDefault(); alert('Merci ! L\'extrait vous sera envoyé par email.');">
+                    <div>
+                        <input type="text" required placeholder="Votre prénom" class="w-full px-3 py-2.5 text-sm bg-mauve-dark/50 rounded-lg border border-white/10 text-white placeholder-gray-500 focus:ring-1 focus:ring-pink-accent focus:border-pink-accent outline-none transition">
+                    </div>
+                    <div>
+                        <input type="email" required placeholder="votre@email.com" class="w-full px-3 py-2.5 text-sm bg-mauve-dark/50 rounded-lg border border-white/10 text-white placeholder-gray-500 focus:ring-1 focus:ring-pink-accent focus:border-pink-accent outline-none transition">
+                    </div>
+                    <button type="submit" class="w-full bg-pink-accent text-mauve-dark font-bold py-2.5 text-sm rounded-lg hover:bg-white transition duration-300 mt-1">
+                        M'envoyer les 10 pages par email
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. SECTION PRIX -->
+    <section id="prix" class="py-16 px-4 max-w-3xl mx-auto reveal flex flex-col items-center">
+        
+        <div class="text-center mb-10 w-full">
+            <h2 class="text-2xl md:text-4xl font-serif font-bold mb-3 text-white">Prêt à lire le guide complet ?</h2>
+            <p class="text-sm md:text-base text-gray-400 font-light">Achetez le livre entier et commencez votre transformation aujourd'hui.</p>
+        </div>
+
+        <!-- L'IMAGE DU LIVRE SUR LA TABLE -->
+        <div class="w-full max-w-sm mb-10 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10">
+            <img src="livre-table.jpg" alt="Le livre posé sur une table" class="w-full h-auto block object-cover">
+        </div>
+
+        <!-- CARTE DE PRIX -->
+        <div class="w-full bg-gradient-to-b from-mauve-light/50 to-mauve-base rounded-3xl shadow-2xl border border-pink-accent/30 overflow-hidden relative">
+            <div class="absolute top-0 right-0 bg-pink-accent text-mauve-dark text-[10px] font-bold px-4 py-1 rounded-bl-lg tracking-wider shadow-lg">
+                -65% AUJOURD'HUI
+            </div>
+            
+            <div class="p-6 md:p-10 text-center">
+                <h3 class="text-xl font-serif font-bold text-white mb-1">Le Guide Complet (PDF)</h3>
+                <p class="text-xs text-gray-400 mb-6 font-light">Accès immédiat après paiement</p>
+                
+                <div class="flex flex-col items-center justify-center mb-8 gap-2">
+                    <span class="text-lg text-gray-500 line-through font-light">10 000 FCFA (~15 €)</span>
+                    <span class="text-4xl md:text-5xl font-serif font-bold text-white">3 500 <span class="text-xl font-sans font-medium text-pink-accent">FCFA (~5,50 €)</span></span>
+                </div>
+
+                <ul class="text-left space-y-3 mb-8 max-w-md mx-auto">
+                    <!-- Modification effectuée ici -->
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-pink-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-gray-200 font-light">Le livre complet.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-pink-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-gray-200 font-light">Les 10 phrases du "Bouclier Verbal"</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-pink-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-gray-200 font-light">Le protocole de rupture étape par étape</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <svg class="w-5 h-5 text-pink-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <span class="text-sm text-gray-200 font-light">Le questionnaire exclusif "Test de l'Emprise"</span>
+                    </li>
+                </ul>
+
+                <!-- Lien de paiement Maketou -->
+                <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener noreferrer" class="block w-full bg-pink-accent text-mauve-dark text-base font-bold py-3.5 rounded-xl hover:bg-white transition-all duration-300 shadow-[0_0_15px_rgba(232,162,200,0.3)] mb-6">
+                    🛒 ACHETER ET LIRE LE GUIDE COMPLET
+                </a>
+
+                <div class="flex flex-col items-center gap-2 border-t border-white/10 pt-4">
+                    <p class="text-[10px] text-gray-400 uppercase tracking-widest font-semibold">Paiement 100% Sécurisé via Maketou</p>
+                    <div class="flex gap-2 flex-wrap justify-center opacity-50">
+                        <span class="px-2 py-1 bg-white/10 rounded text-[9px] font-bold text-white">MOBILE MONEY</span>
+                        <span class="px-2 py-1 bg-white/10 rounded text-[9px] font-bold text-white">VISA</span>
+                        <span class="px-2 py-1 bg-white/10 rounded text-[9px] font-bold text-white">MASTERCARD</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. SECTION FAQ -->
+    <section class="py-16 px-4 max-w-3xl mx-auto reveal">
+        <h2 class="text-2xl font-serif font-bold text-center mb-8 text-white">Questions Fréquentes</h2>
+        
+        <div class="space-y-3">
+            <details class="bg-white/5 rounded-xl border border-white/10 group cursor-pointer">
+                <summary class="flex justify-between items-center font-semibold p-4 text-sm text-white outline-none">
+                    Quelle est la différence entre l'extrait et le livre ?
+                    <span class="transition-transform duration-300 group-open:rotate-180 text-pink-accent">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="px-4 pb-4 text-gray-400 text-xs leading-relaxed font-light border-t border-white/5 pt-3">
+                    L'extrait que vous pouvez lire gratuitement sur le site contient les 10 premières pages du livre. Pour obtenir le guide complet (plus de 60 pages, avec toutes les techniques de rupture et de reconstruction), vous devez cliquer sur l'un des boutons d'achat pour procéder au paiement sécurisé sur Maketou.
+                </div>
+            </details>
+
+            <details class="bg-white/5 rounded-xl border border-white/10 group cursor-pointer">
+                <summary class="flex justify-between items-center font-semibold p-4 text-sm text-white outline-none">
+                    Comment vais-je recevoir le livre complet ?
+                    <span class="transition-transform duration-300 group-open:rotate-180 text-pink-accent">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="px-4 pb-4 text-gray-400 text-xs leading-relaxed font-light border-t border-white/5 pt-3">
+                    Dès que votre paiement sur Maketou est validé, vous serez redirigé vers une page de téléchargement. Vous recevrez également un email contenant le lien pour télécharger votre guide complet au format PDF.
+                </div>
+            </details>
+
+            <details class="bg-white/5 rounded-xl border border-white/10 group cursor-pointer">
+                <summary class="flex justify-between items-center font-semibold p-4 text-sm text-white outline-none">
+                    Le paiement est-il sécurisé ?
+                    <span class="transition-transform duration-300 group-open:rotate-180 text-pink-accent">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"><path d="M6 9l6 6 6-6"></path></svg>
+                    </span>
+                </summary>
+                <div class="px-4 pb-4 text-gray-400 text-xs leading-relaxed font-light border-t border-white/5 pt-3">
+                    Absolument. Toutes les transactions sont traitées par la plateforme sécurisée Maketou (Mobile Money, Visa, Mastercard). Vos informations ne sont jamais stockées sur notre serveur.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="bg-black/40 py-8 px-4 text-center text-sm border-t border-white/10">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-4">
+            <p class="font-serif font-bold text-white text-lg tracking-wider text-pink-accent">TROP GENTIL POUR ÊTRE HEUREUX</p>
+            <div class="flex flex-wrap justify-center gap-4 text-xs text-gray-400">
+                <a href="#" class="hover:text-pink-accent transition-colors">Mentions Légales</a>
+                <a href="#" class="hover:text-pink-accent transition-colors">Confidentialité</a>
+                <a href="mailto:contact@tondomaine.com" class="hover:text-pink-accent transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BOUTON D'ACHAT FLOTTANT -->
+    <div id="floating-cta" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 translate-y-24 opacity-0 transition-all duration-500 z-50 w-11/12 max-w-xs md:bottom-8 md:left-auto md:right-8 md:translate-x-0">
+        <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 w-full bg-pink-accent text-mauve-dark font-bold py-3 px-4 rounded-full shadow-[0_10px_25px_rgba(0,0,0,0.5)] hover:scale-105 hover:bg-white transition-all duration-300 text-sm">
+            🛒 Acheter le guide (3 500 FCFA)
+        </a>
+    </div>
+
+    <!-- MODALE LECTEUR PDF -->
+    <div id="pdfModal" class="modal">
+        <div class="relative w-full h-full md:h-[90vh] max-w-5xl md:mx-4 bg-mauve-base md:rounded-xl overflow-hidden shadow-2xl flex flex-col">
+            <!-- Barre du haut avec le bouton Fermer -->
+            <div class="flex justify-between items-center p-3 border-b border-white/10 bg-mauve-dark shrink-0">
+                <h3 class="font-serif font-bold text-white text-sm md:text-base">Extrait Gratuit - 10 premières pages</h3>
+                <div class="flex items-center gap-4">
+                    <a href="extrait-10-pages.pdf" download class="text-xs text-pink-accent hover:text-white transition hidden md:block">Télécharger l'extrait</a>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-white transition text-3xl font-bold leading-none px-2">&times;</button>
+                </div>
+            </div>
+            <!-- Le lecteur PDF -->
+            <object data="extrait-10-pages.pdf#view=FitH" type="application/pdf" class="w-full flex-grow bg-gray-200">
+                <div class="flex flex-col items-center justify-center h-full p-6 text-center text-navy">
+                    <p class="mb-4">Votre navigateur ne peut pas afficher le PDF directement sur cette page.</p>
+                    <a href="extrait-10-pages.pdf" target="_blank" class="bg-pink-accent text-mauve-dark font-bold py-3 px-6 rounded-lg">
+                        Cliquez ici pour lire ou télécharger l'extrait
+                    </a>
+                </div>
+            </object>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Compte à rebours
+        let timeInSeconds = 24 * 60 * 60;
+        const timerElement = document.getElementById('timer');
+        const countdown = setInterval(() => {
+            timeInSeconds--;
+            const hours = Math.floor(timeInSeconds / 3600);
+            const minutes = Math.floor((timeInSeconds % 3600) / 60);
+            const seconds = timeInSeconds % 60;
+            timerElement.textContent = String(hours).padStart(2, '0') + ':' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+            if (timeInSeconds <= 0) clearInterval(countdown);
+        }, 1000);
+
+        // Gestion intelligente du bouton flottant
+        const floatingBtn = document.getElementById('floating-cta');
+        const priceSection = document.getElementById('prix');
+        
+        window.addEventListener('scroll', () => {
+            // On récupère la position de la section prix par rapport à l'écran
+            const priceRect = priceSection.getBoundingClientRect();
+            
+            // Si on est dans la zone de la section prix (on anticipe un peu pour qu'il disparaisse à temps)
+            if (priceRect.top < window.innerHeight + 100 && priceRect.bottom >= 0) {
+                // On cache le bouton flottant car le vrai bouton est visible
+                floatingBtn.classList.add('translate-y-24', 'opacity-0');
+            } 
+            // Sinon, si on a scrollé vers le bas (mais pas encore au prix)
+            else if (window.scrollY > 500) {
+                floatingBtn.classList.remove('translate-y-24', 'opacity-0');
+                floatingBtn.classList.add('translate-y-0', 'opacity-100');
+            } 
+            // Tout en haut de la page
+            else {
+                floatingBtn.classList.add('translate-y-24', 'opacity-0');
+                floatingBtn.classList.remove('translate-y-0', 'opacity-100');
+            }
+        });
+
+        // Animation d'apparition
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(reveal => revealObserver.observe(reveal));
+
+        // Modale PDF
+        const modal = document.getElementById('pdfModal');
+        function openModal() { 
+            modal.classList.add('active'); 
+            document.body.style.overflow = 'hidden'; 
+        }
+        function closeModal() { 
+            modal.classList.remove('active'); 
+            document.body.style.overflow = 'auto'; 
+        }
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    </script>
+</body>
+</html>
