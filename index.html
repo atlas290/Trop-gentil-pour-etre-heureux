@@ -38,19 +38,6 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Effet 3D pour la couverture en haut */
-        .book-container { perspective: 1000px; }
-        .book {
-            transform-style: preserve-3d;
-            transform: rotateY(-10deg) rotateX(5deg);
-            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-            box-shadow: 15px 25px 40px rgba(0,0,0,0.6);
-        }
-        .book-container:hover .book {
-            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
-            box-shadow: 0px 35px 50px rgba(0,0,0,0.7);
-        }
-
         body { background: radial-gradient(circle at top right, #3a2147 0%, #1A1025 70%); background-attachment: fixed; color: #F3F4F6; }
         
         /* Modale PDF */
@@ -70,7 +57,7 @@
         </div>
     </div>
 
-    <!-- 2. SECTION HÉROS (IMAGE 1 : LA COUVERTURE) -->
+    <!-- 2. SECTION HÉROS (COUVERTURE DROITE ET CENTRÉE) -->
     <header class="relative max-w-6xl mx-auto px-4 py-12 md:py-24 flex flex-col-reverse md:flex-row items-center gap-10 md:gap-20">
         <div class="md:w-1/2 text-center md:text-left flex flex-col gap-5 reveal w-full">
             <span class="inline-block bg-pink-accent/10 border border-pink-accent/30 text-pink-accent px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest w-max mx-auto md:mx-0">
@@ -89,7 +76,7 @@
                     📖 Lire l'extrait gratuit (10 pages)
                 </button>
                 <!-- Bouton Acheter (Lien Maketou) -->
-                <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener-center noreferrer" class="flex items-center justify-center gap-2 bg-pink-accent text-m bookauve-dark font-bold py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(232,162,200,-container0.3)] hover:shadow-[0_0_25px_rgba(232,162,200 reveal,0.6)] transition-all duration-300 text-sm md:text-base w-full">
+                <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-pink-accent text-mauve-dark font-bold py-3 px-4 rounded-lg shadow-[0_0_15px_rgba(232,162,200,0.3)] hover:shadow-[0_0_25px_rgba(232,162,200,0.6)] transition-all duration-300 text-sm md:text-base w-full">
                     🛒 Acheter le guide complet (3 500 FCFA)
                 </a>
             </div>
@@ -99,9 +86,9 @@
             </p>
         </div>
 
-        <!-- L'IMAGE DE LA COUVERTURE -->
-        <div class="md:w-1/2 flex justify w-full px-6">
-            <div class="book relative w-56 sm:w-64 md:w-80 lg:w-96 rounded-xl overflow-hidden border border-white/10">
+        <!-- L'IMAGE DE LA COUVERTURE (CENTRÉE ET DROITE) -->
+        <div class="md:w-1/2 flex justify-center reveal w-full px-6">
+            <div class="w-64 sm:w-72 md:w-80 lg:w-96 rounded-xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] border border-white/10">
                 <img src="couverture.jpg" alt="Couverture du livre Trop Gentil pour Être Heureux" class="w-full h-auto block object-cover">
             </div>
         </div>
@@ -161,36 +148,23 @@
         </div>
     </section>
 
-    <!-- 5. SECTION APERÇU GRATUIT -->
+    <!-- 5. SECTION APERÇU GRATUIT (SANS FORMULAIRE) -->
     <section id="apercu" class="bg-mauve-light/20 py-16 px-4 border-y border-white/5 reveal">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-8 bg-mauve-base/80 p-6 md:p-10 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-md">
-            <div class="md:w-1/2 space-y-3">
-                <span class="bg-pink-accent/20 text-pink-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">Extrait 100% Gratuit</span>
-                <h2 class="text-xl md:text-3xl font-serif font-bold text-white leading-tight">Lisez les 10 premières pages avant d'acheter.</h2>
-                <p class="text-sm text-gray-300 leading-relaxed font-light">
-                    Cliquez pour lire immédiatement l'extrait de <strong>10 pages</strong> directement sur le site. (Le livre complet est disponible en cliquant sur les boutons d'achat).
-                </p>
-                <!-- Bouton secondaire pour lire l'extrait depuis cette section -->
-                <button onclick="openModal()" class="mt-4 flex items-center justify-center gap-2 bg-transparent border border-pink-accent/50 text-pink-accent hover:bg-pink-accent/10 font-semibold py-2 px-4 rounded-lg transition-all duration-300 text-sm w-max">
-                    📖 Lire l'extrait maintenant
+        <div class="max-w-4xl mx-auto text-center bg-mauve-base/80 p-8 md:p-12 rounded-3xl shadow-2xl border border-white/10 backdrop-blur-md">
+            <span class="bg-pink-accent/20 text-pink-accent px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest inline-block mb-4">Extrait 100% Gratuit</span>
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-white leading-tight mb-4">Lisez les 10 premières pages avant d'acheter.</h2>
+            <p class="text-sm md:text-base text-gray-300 leading-relaxed font-light max-w-2xl mx-auto mb-8">
+                Cliquez ci-dessous pour lire immédiatement l'extrait du livre directement sur le site. Si vous êtes convaincu, vous pouvez passer à l'achat du guide complet en un clic.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <!-- Bouton Lire l'extrait -->
+                <button onclick="openModal()" class="flex items-center justify-center gap-2 bg-pink-accent text-mauve-dark font-bold py-3 px-8 rounded-lg shadow-[0_0_15px_rgba(232,162,200,0.3)] hover:shadow-[0_0_25px_rgba(232,162,200,0.6)] hover:bg-white transition-all duration-300 text-sm md:text-base w-full sm:w-auto">
+                    📖 Lire les 10 pages (Gratuit)
                 </button>
-            </div>
-            
-            <div class="md:w-1/2 w-full bg-white/5 p-6 rounded-2xl border border-white/10 text-center">
-                <div class="text-4xl mb-4">📥</div>
-                <h3 class="font-bold text-base mb-2 text-white font-serif">Envie de le garder ?</h3>
-                <p class="text-xs text-gray-400 mb-4">Recevez l'extrait PDF par email pour le lire plus tard.</p>
-                <form class="space-y-3" onsubmit="event.preventDefault(); alert('Merci ! L\'extrait vous sera envoyé par email.');">
-                    <div>
-                        <input type="text" required placeholder="Votre prénom" class="w-full px-3 py-2.5 text-sm bg-mauve-dark/50 rounded-lg border border-white/10 text-white placeholder-gray-500 focus:ring-1 focus:ring-pink-accent focus:border-pink-accent outline-none transition">
-                    </div>
-                    <div>
-                        <input type="email" required placeholder="votre@email.com" class="w-full px-3 py-2.5 text-sm bg-mauve-dark/50 rounded-lg border border-white/10 text-white placeholder-gray-500 focus:ring-1 focus:ring-pink-accent focus:border-pink-accent outline-none transition">
-                    </div>
-                    <button type="submit" class="w-full bg-pink-accent text-mauve-dark font-bold py-2.5 text-sm rounded-lg hover:bg-white transition duration-300 mt-1">
-                        M'envoyer les 10 pages par email
-                    </button>
-                </form>
+                <!-- Bouton Acheter -->
+                <a href="https://eveil-personnels.mymaketou.shop/products/trop-gentil-pour-etre-heureux/checkout" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 bg-transparent border border-pink-accent/50 text-pink-accent hover:bg-pink-accent/10 font-semibold py-3 px-8 rounded-lg transition-all duration-300 text-sm md:text-base w-full sm:w-auto">
+                    🛒 Acheter le guide complet
+                </a>
             </div>
         </div>
     </section>
@@ -224,7 +198,6 @@
                 </div>
 
                 <ul class="text-left space-y-3 mb-8 max-w-md mx-auto">
-                    <!-- Modification effectuée ici -->
                     <li class="flex items-start gap-2">
                         <svg class="w-5 h-5 text-pink-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                         <span class="text-sm text-gray-200 font-light">Le livre complet.</span>
@@ -364,20 +337,15 @@
         const priceSection = document.getElementById('prix');
         
         window.addEventListener('scroll', () => {
-            // On récupère la position de la section prix par rapport à l'écran
             const priceRect = priceSection.getBoundingClientRect();
             
-            // Si on est dans la zone de la section prix (on anticipe un peu pour qu'il disparaisse à temps)
             if (priceRect.top < window.innerHeight + 100 && priceRect.bottom >= 0) {
-                // On cache le bouton flottant car le vrai bouton est visible
                 floatingBtn.classList.add('translate-y-24', 'opacity-0');
             } 
-            // Sinon, si on a scrollé vers le bas (mais pas encore au prix)
             else if (window.scrollY > 500) {
                 floatingBtn.classList.remove('translate-y-24', 'opacity-0');
                 floatingBtn.classList.add('translate-y-0', 'opacity-100');
             } 
-            // Tout en haut de la page
             else {
                 floatingBtn.classList.add('translate-y-24', 'opacity-0');
                 floatingBtn.classList.remove('translate-y-0', 'opacity-100');
